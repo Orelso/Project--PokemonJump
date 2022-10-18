@@ -1,0 +1,73 @@
+*{
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+h1{
+   background-image: url(images/Gotta-Jumpem-All.png);
+   background-repeat: no-repeat;
+   margin-left: 450px;
+   width: 1200px;
+   height: 300px;
+}
+
+.game{
+    width: 500px;
+    height: 200px;
+    border: 1px solid black;
+    margin: auto;
+    margin-top: 5px;
+    background-image: url("https://p4.wallpaperbetter.com/wallpaper/957/704/964/pokemon-fields-ruby-1920x1200-nature-fields-hd-art-wallpaper-preview.jpg");
+    background-size: contain;
+}
+#character{
+    width: 50px;
+    height: 50px;
+    content: url("https://static.pokemonpets.com/images/monsters-images-300-300/100-Voltorb.webp");    position:relative;
+    position: relative;
+    top: 150px;
+}
+.animate{
+    animation: jump 0.3s linear;
+}
+@keyframes jump{
+    0%{top: 150px;}
+    30%{top: 100px;}
+    70%{top: 100px;}
+    100%{top: 150px;}
+}
+
+#block{
+    width: 50px;
+    height: 50px;
+    position: relative;
+    top: 110px;
+    left: 500px;
+    animation: block 1.3s infinite linear;
+    content: url("https://www.serebii.net/swordshield/pokemon/027.png");
+}
+
+#flyingPokemon{
+    width: 50px;
+    height: 50px;
+    position: relative;
+    top: -100px;
+    left: 500px;
+    animation: block 3s linear;
+    animation-iteration-count: infinite;
+    content: url("https://www.serebii.net/pokearth/sprites/pt/093.png");
+}
+
+
+
+
+
+@keyframes block{
+    0%{left: 500px}
+    100%{left: -20px}
+}
+
+p{
+    text-align: center;
+}
