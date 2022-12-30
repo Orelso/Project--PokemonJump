@@ -7,9 +7,14 @@
 h1{
    background-image: url(images/Gotta-Jumpem-All.png);
    background-repeat: no-repeat;
-   margin-left: 450px;
+   margin-left: 350px;
    width: 1200px;
    height: 300px;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+
+   
 }
 
 .game{
@@ -21,22 +26,23 @@ h1{
     background-image: url("https://p4.wallpaperbetter.com/wallpaper/957/704/964/pokemon-fields-ruby-1920x1200-nature-fields-hd-art-wallpaper-preview.jpg");
     background-size: contain;
     position: relative;
+    overflow-y:hidden;
 
 }
 #character{
     width: 100px;
     height: 100px;
-    content: url("https://static.pokemonpets.com/images/monsters-images-300-300/100-Voltorb.webp");    position:relative;
+    content: url("https://static.pokemonpets.com/images/monsters-images-300-300/100-Voltorb.webp"); 
     position: relative;
     top: 300px;
 }
 .animate{
-    animation: jump 0.2s linear;
+    animation: jump 0.25s linear;
 }
 @keyframes jump{
     0%{top: 300px;}
-    30%{top: 200px;}
-    70%{top: 200px;}
+    30%{top: 150px;}
+    70%{top: 150px;}
     100%{top: 300px;}
 }
 
@@ -45,7 +51,7 @@ h1{
     height: 100px;
     position: absolute;
     top: 320px;
-    animation: block 1.2s infinite ease-in;
+    animation: block 1.1s infinite linear;
     content: url("https://www.serebii.net/swordshield/pokemon/027.png");
 }
 
@@ -57,7 +63,7 @@ h1{
     animation: block 3s linear;
     animation-iteration-count: infinite;
     content: url("https://www.serebii.net/pokearth/sprites/pt/093.png");
-    content: url('https://www.serebii.net/swordshield/pokemon/146.png')
+    /* content: url('https://www.serebii.net/swordshield/pokemon/146.png') */
 }
 
 
@@ -65,7 +71,7 @@ h1{
 
 
 @keyframes block{
-    0%{left: 1000px}
+    0%{left: 1250px}
     100%{left: -40px}
 }
 
