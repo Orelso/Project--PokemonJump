@@ -173,35 +173,38 @@ function saveScore(name, score) {
       } 
   }, 10);
 
-// const table = document.createElement("table");
-// table.classList.add("scoreboard");
-// table.innerHTML = `
-//     <tr>
-//         <th>Name</th>
-//         <th>Score</th>
-//     </tr>
-// `;
-// document.getElementById("scoreboard").appendChild(table);
+const table = document.createElement("table");
+table.classList.add("scoreboard");
+table.innerHTML = `
+    <tr>
+        <th>Name</th>
+        <th>Score</th>
+    </tr>
+`;
+document.getElementById("scoreboard").appendChild(table);
 
-// function showScoreBoard() {
-//     // get the scoreBoard data
-//     const scoreBoard = JSON.parse(localStorage.getItem("scoreBoard")) || [];
-//     // update the content of the table
-//     table.innerHTML = `
-//         <tr>
-//             <th>Name</th>
-//             <th>Score</th>
-//         </tr>
-//     `;
-//     scoreBoard.forEach(function(player) {
-//         table.innerHTML += `
-//             <tr>
-//                 <td>${player.name}</td>
-//                 <td>${player.score}</td>
-//             </tr>
-//         `;
-//     });
-// }
-
+function showScoreBoard() {
+  // get the scoreBoard data
+  let scoreBoard = JSON.parse(localStorage.getItem("scoreBoard")) || [];
+  // sort the scoreBoard data by score in descending order
+  scoreBoard.sort((a, b) => b.score - a.score);
+  // take only the top 10 scores
+  scoreBoard = scoreBoard.slice(0, 10);
+  // update the content of the table
+  table.innerHTML = `
+      <tr>
+          <th>Name</th>
+          <th>Score</th>
+      </tr>
+  `;
+  scoreBoard.forEach(function(player) {
+      table.innerHTML += `
+          <tr>
+              <td>${player.name}</td>
+              <td>${player.score}</td>
+          </tr>
+      `;
+  });
+}
 
 
