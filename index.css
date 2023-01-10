@@ -72,6 +72,10 @@ h1{
     height: 50px;
   }
 
+  img {
+    width: 100px;
+    height: 100px;
+  }
 
 @keyframes block{
     0%{left: 1250px}

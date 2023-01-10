@@ -6,13 +6,16 @@ var index = 0;
 const displayedPokemon = document.getElementById("displayed-pokemon");
 gameOver = false
 let jumpedPokemon = 0;
+let nameEntered = false;
 
+/* -------------------------------------------------------------------------------------------------------------------------------------------(comment)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 document.body.onkeyup = function(e) {
   if( e.keyCode === 32 ) {
     jump();
   }
 }
 
+/* -------------------------------------------------------------------------------------------------------------------------------------------(comment)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 const images = [
     'https://www.serebii.net/swordshield/pokemon/001.png',
     'https://www.serebii.net/swordshield/pokemon/002.png',
@@ -22,14 +25,61 @@ const images = [
     'https://www.serebii.net/swordshield/pokemon/006.png',
     'https://www.serebii.net/swordshield/pokemon/007.png',
     'https://www.serebii.net/swordshield/pokemon/008.png',
-    'https://www.serebii.net/swordshield/pokemon/009.png'
+    'https://www.serebii.net/swordshield/pokemon/009.png',
+    'https://www.serebii.net/swordshield/pokemon/010.png',
+    'https://www.serebii.net/swordshield/pokemon/011.png',
+    'https://www.serebii.net/swordshield/pokemon/013.png',
+    'https://www.serebii.net/swordshield/pokemon/014.png',
+    'https://www.serebii.net/swordshield/pokemon/015.png',
+    'https://www.serebii.net/swordshield/pokemon/016.png',
+    'https://www.serebii.net/swordshield/pokemon/017.png',
+    'https://www.serebii.net/swordshield/pokemon/018.png',
+    'https://www.serebii.net/swordshield/pokemon/019.png',
+    'https://www.serebii.net/swordshield/pokemon/020.png',
+    'https://www.serebii.net/swordshield/pokemon/021.png',
+    'https://www.serebii.net/swordshield/pokemon/022.png',
+    'https://www.serebii.net/swordshield/pokemon/023.png',
+    'https://www.serebii.net/swordshield/pokemon/024.png',
+    'https://www.serebii.net/swordshield/pokemon/025.png',
+    'https://www.serebii.net/swordshield/pokemon/026.png',
+    'https://www.serebii.net/swordshield/pokemon/027.png',
+    'https://www.serebii.net/swordshield/pokemon/028.png',
+    'https://www.serebii.net/swordshield/pokemon/029.png',
+    'https://www.serebii.net/swordshield/pokemon/031.png',
+    'https://www.serebii.net/swordshield/pokemon/032.png',
+    'https://www.serebii.net/swordshield/pokemon/033.png',
+    'https://www.serebii.net/swordshield/pokemon/034.png',
+    'https://www.serebii.net/swordshield/pokemon/035.png',
+    'https://www.serebii.net/swordshield/pokemon/036.png',
+    'https://www.serebii.net/swordshield/pokemon/037.png',
+    'https://www.serebii.net/swordshield/pokemon/038.png',
+    'https://www.serebii.net/swordshield/pokemon/039.png',
+    'https://www.serebii.net/swordshield/pokemon/041.png',
+    'https://www.serebii.net/swordshield/pokemon/042.png',
+    'https://www.serebii.net/swordshield/pokemon/043.png',
+    'https://www.serebii.net/swordshield/pokemon/044.png',
+    'https://www.serebii.net/swordshield/pokemon/045.png',
+    'https://www.serebii.net/swordshield/pokemon/046.png',
+    'https://www.serebii.net/swordshield/pokemon/047.png',
+    'https://www.serebii.net/swordshield/pokemon/048.png',
+    'https://www.serebii.net/swordshield/pokemon/049.png',
+    'https://www.serebii.net/swordshield/pokemon/050.png',
+    'https://www.serebii.net/swordshield/pokemon/051.png',
+    'https://www.serebii.net/swordshield/pokemon/052.png',
+    'https://www.serebii.net/swordshield/pokemon/053.png',
+    'https://www.serebii.net/swordshield/pokemon/054.png',
+    'https://www.serebii.net/swordshield/pokemon/055.png',
+    'https://www.serebii.net/swordshield/pokemon/056.png',
+    'https://www.serebii.net/swordshield/pokemon/057.png',
+    'https://www.serebii.net/swordshield/pokemon/058.png',
+    'https://www.serebii.net/swordshield/pokemon/059.png',
 
   ];
-
+/* -------------------------------------------------------------------------------------------------------------------------------------------(comment)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
   const usedImages = [];
 
 
-
+/* -------------------------------------------------------------------------------------------------------------------------------------------(comment)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
   const flyingImages = [
     
     'https://www.serebii.net/swordshield/pokemon/146.png',
@@ -43,7 +93,7 @@ const images = [
   ]
   
 // const nextImage = () => images[Math.floor(Math.random() * images.length)]; 
-
+/* -------------------------------------------------------------------------------------------------------------------------------------------(comment)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 const nextImage = () => {
   if (usedImages.length === images.length) {
       clearInterval(checkDead);
@@ -57,9 +107,9 @@ const nextImage = () => {
   usedImages.push(nextImage);
   return nextImage;
 }
-
+/* -------------------------------------------------------------------------------------------------------------------------------------------(comment)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 const nextFlyingImage =() => flyingImages[Math.floor(Math.random() * flyingImages.length)]; 
-
+/* -------------------------------------------------------------------------------------------------------------------------------------------(jump)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 function jump() {
   if (character.classList.contains("animate"))  {
       return;     
@@ -81,32 +131,78 @@ function jump() {
 }
 
 
+function saveScore(name, score) {
+  const scoreBoard = JSON.parse(localStorage.getItem("scoreBoard")) || [];
+  scoreBoard.push({ name, score });
+  localStorage.setItem("scoreBoard", JSON.stringify(scoreBoard));
+}
+  /* -------------------------------------------------------------------------------------------------------------------------------------------(check of Character is dead)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+  var checkDead = setInterval(function() {
+      let characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
+      let blockLeft = parseInt(window.getComputedStyle(pokemon).getPropertyValue("left"));
+      if(blockLeft < 60 && blockLeft > -60 && characterTop >= 260){
+          pokemon.style.animation = "none";
+          gameOver = true;
+          if (!nameEntered) {
+              const playerName = prompt("Game over! Enter your name:");
+              nameEntered = true;
+              saveScore(playerName, Math.floor(counter/100));
+          } else {
+              saveScore("no name entered", Math.floor(counter/100));
+          }
+          showScoreBoard();
+          alert("Final score: " + Math.floor(counter/100) + "\n your score is saved!");
+          counter = 0;
+          pokemon.style.animation = "block 1.3s infinite linear";
+      } else {
+          counter++;
+      }
+      if (usedImages.length === images.length) {
+        clearInterval(checkDead);
+        gameOver = true;
+        if (!nameEntered) {
+              const playerName = prompt("Game over! Enter your name:");
+              nameEntered = true;
+              saveScore(playerName, Math.floor(counter/100));
+          } else {
+              saveScore("no name entered", Math.floor(counter/100));
+          }
+        showScoreBoard();
+        alert("You've already jumped all the Pokemon Great Job! Final score: " + Math.floor(counter/100) + "\n your score is saved!");
+        return;
+      } 
+  }, 10);
 
-  
-var checkDead = setInterval(function() {
-    let characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
-    let blockLeft = parseInt(window.getComputedStyle(pokemon).getPropertyValue("left"));
-    if(blockLeft < 60 && blockLeft > -60 && characterTop >= 260){
-        pokemon.style.animation = "none";
-        alert("GAME OVER! SCORE: "+ Math.floor(counter / 100) + "\n \nThe Pokemon will come slower now! Refresh the game for a FASTER challenge!");
-        counter = 0;
-        pokemon.style.animation = "block 1.3s infinite linear";
-        // flyingPokemon.style.animation = "block 3s infinite linear"
-        // score = Math.floor(counter / 100);
-        // scoreDisplay.textContent = "Score: " + score;
-    } else {
-        counter++;
-        document.getElementById("scoreSpan").innerHTML = Math.floor(counter/100);
-    }
-    if(gameOver){
-      clearInterval(checkDead);
-      return;
-  }
-    if (usedImages.length === images.length) {
-      clearInterval(checkDead);
-      gameOver = true;
-      alert("You've already jumped all the Pokemon Great Job! Game over!");
-      return;
-  } 
-}, 10);
+  // create the table element
+const table = document.createElement("table");
+table.classList.add("scoreboard");
+table.innerHTML = `
+    <tr>
+        <th>Name</th>
+        <th>Score</th>
+    </tr>
+`;
+document.getElementById("scoreboard").appendChild(table);
+
+function showScoreBoard() {
+    // get the scoreBoard data
+    const scoreBoard = JSON.parse(localStorage.getItem("scoreBoard")) || [];
+    // update the content of the table
+    table.innerHTML = `
+        <tr>
+            <th>Name</th>
+            <th>Score</th>
+        </tr>
+    `;
+    scoreBoard.forEach(function(player) {
+        table.innerHTML += `
+            <tr>
+                <td>${player.name}</td>
+                <td>${player.score}</td>
+            </tr>
+        `;
+    });
+}
+
+
 
