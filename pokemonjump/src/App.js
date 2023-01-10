@@ -4,20 +4,25 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+<div lang="en" onclick="jump()">
+<body>
+    <h1>poop</h1>
+    <div class="game">
+        <div id="character"></div>
+        <div className="myImg" id="pokemon"></div> 
+        <div id="flyingPokemon"></div>
+    </div>
+    <showScoreBoard />
+    <p>Score: <span id="scoreboard"></span></p>
+    <p>Jumped Pokemon <span id="imageSpan"></span></p>
+    <div id="game-container">
+        <img id="displayed-pokemon" src=""/>
+      </div>
+
+      <div id="image-container"></div>
+</body>
+<script src="index.js"></script>
+    </div>
     </div>
   );
 }
