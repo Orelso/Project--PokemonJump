@@ -5,6 +5,7 @@ var counter = 0;
 var index = 0;
 const displayedPokemon = document.getElementById("displayed-pokemon");
 gameOver = false
+let score = 0;
 let jumpedPokemon = 0;
 let nameEntered = false;
 
@@ -75,6 +76,34 @@ const images = [
     'https://www.serebii.net/swordshield/pokemon/059.png',
 
   ];
+
+  // const newWidth = 200; // The desired width of the images
+  // const newHeight = 200; // The desired height of the images
+  
+  // // Create a canvas element
+  // const canvas = document.createElement('canvas');
+  // const ctx = canvas.getContext('2d');
+  
+  // for (let i = 0; i < images.length; i++) {
+  //     // Create a new image element
+  //     const image = new Image();
+  //     image.src = images[i];
+  
+  //     // Wait for the image to load
+  //     image.onload = function() {
+  //         // Resize the image
+  //         canvas.width = newWidth;
+  //         canvas.height = newHeight;
+  //         ctx.drawImage(image, 0, 0, newWidth, newHeight);
+  
+  //         // Get the data URL of the resized image
+  //         const dataURL = canvas.toDataURL();
+  
+  //         // Do something with the resized image, such as setting it as the src of an <img> element
+  //         const img = document.getElementById('myImg');
+  //         img.src = dataURL;
+  //     }
+  // }
 /* -------------------------------------------------------------------------------------------------------------------------------------------(comment)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
   const usedImages = [];
 
@@ -153,7 +182,7 @@ function saveScore(name, score) {
           showScoreBoard();
           alert("Final score: " + Math.floor(counter/100) + "\n your score is saved!");
           counter = 0;
-          pokemon.style.animation = "block 1.3s infinite linear";
+          pokemon.style.animation = "block 1.1s infinite linear";
       } else {
           counter++;
       }
@@ -172,6 +201,7 @@ function saveScore(name, score) {
         return;
       } 
   }, 10);
+  /* -------------------------------------------------------------------------------------------------------------------------------------------()------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 const table = document.createElement("table");
 table.classList.add("scoreboard");

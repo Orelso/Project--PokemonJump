@@ -7,15 +7,69 @@
 h1{
    background-image: url(images/Gotta-Jumpem-All.png);
    background-repeat: no-repeat;
-   margin-left: 350px;
    width: 1200px;
    height: 300px;
    display: block;
    margin-left: auto;
    margin-right: auto;
+   
 
    
 }
+#scoreboard {
+    background-color: #333; /* dark background */
+    color: #fff; /* white text */
+    padding: 20px; /* add padding */
+    transition: all .2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+    box-shadow: 8px 10px 10px rgba(0,0,0,0.3);
+    margin-top: -15%;
+    float: right;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+
+}
+
+#scoreboard .name {
+    align-self: flex-start;
+    margin-top: 90%;
+}
+
+#scoreboard .score {
+    align-self: flex-start;
+}
+
+#scoreboard h2 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+#scoreboard p {
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+#scoreboard table {
+    margin-top: 20px; /* add margin */
+}
+
+#scoreboard:hover {
+    transform: scale(1.05); /* scale up on hover */
+}
+#scoreboard table td {
+    border-bottom: 1px solid silver;
+    padding: 0 10px; 
+}
+#scoreboard table td:first-child {
+    border-right: 1px solid silver;
+}
+#scoreboard td {
+    margin-bottom: 55px; /* Add 15px space below each td element */
+}
+
 
 .game{
     width: 1000px;
