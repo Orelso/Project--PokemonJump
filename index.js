@@ -91,7 +91,7 @@ const images = [
 const nextImage = () => {
   if (usedImages.length === images.length) {
       clearInterval(checkDead);
-      alert("You've already jumped all the Pokemon Great Job! Game over!");
+      // alert("You've already jumped all the Pokemon Great Job! Game over!");
       return;
   }
   let nextImage;
@@ -116,8 +116,9 @@ function jump() {
       flyingPokemon.style.content = `url(${nextFlyingImage()})`;
       displayedPokemon.src = currentImage;
 
-      const newImage = document.createElement("img");
+     const newImage = document.createElement("img");
       newImage.src = currentImage;
+      newImage.loading = 'lazy';
       document.getElementById("image-container").appendChild(newImage);
       
       jumpedPokemon++;
@@ -139,14 +140,14 @@ function saveScore(name, score) {
           pokemon.style.animation = "none";
           gameOver = true;
           if (!nameEntered) {
-              const playerName = prompt("Game over! Enter your name:");
+              // const playerName = prompt("Game over! Enter your name:");
               nameEntered = true;
               saveScore(playerName, Math.floor(counter/100));
           } else {
               saveScore("no name entered", Math.floor(counter/100));
           }
           showScoreBoard();
-          alert("Final score: " + Math.floor(counter/100) + "\n your score is saved!");
+          // alert("Final score: " + Math.floor(counter/100) + "\n your score is saved!");
           counter = 0;
           pokemon.style.animation = "block 1.1s infinite linear";
       } else {
@@ -156,7 +157,7 @@ function saveScore(name, score) {
         clearInterval(checkDead);
         gameOver = true;
         if (!nameEntered) {
-              const playerName = prompt("Game over! Enter your name:");
+              // const playerName = prompt("Game over! Enter your name:");
               nameEntered = true;
               saveScore(playerName, Math.floor(counter/100));
           } else {
@@ -164,7 +165,7 @@ function saveScore(name, score) {
               saveScore("no name entered", Math.floor(counter/100));
           }
         showScoreBoard();
-        alert("You've already jumped all the Pokemon Great Job! Final score: " + Math.floor(counter/100) + "\n your score is saved!");
+        // alert("You've already jumped all the Pokemon Great Job! Final score: " + Math.floor(counter/100) + "\n your score is saved!");
         return;
       } 
   }, 10);
