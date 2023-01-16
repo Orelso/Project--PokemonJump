@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './App.css'
 
 function App() {
   const [jumpedPokemon, setJumpedPokemon] = useState(0)
