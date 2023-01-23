@@ -16,65 +16,8 @@ document.body.onkeyup = function(e) {
   }
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Images)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-const images = [
-    'https://www.serebii.net/swordshield/pokemon/001.png',
-    'https://www.serebii.net/swordshield/pokemon/002.png',
-    'https://www.serebii.net/swordshield/pokemon/003.png',
-    'https://www.serebii.net/swordshield/pokemon/004.png',
-    'https://www.serebii.net/swordshield/pokemon/005.png',
-    'https://www.serebii.net/swordshield/pokemon/006.png',
-    'https://www.serebii.net/swordshield/pokemon/007.png',
-    'https://www.serebii.net/swordshield/pokemon/008.png',
-    'https://www.serebii.net/swordshield/pokemon/009.png',
-    'https://www.serebii.net/swordshield/pokemon/010.png',
-    'https://www.serebii.net/swordshield/pokemon/011.png',
-    'https://www.serebii.net/swordshield/pokemon/013.png',
-    'https://www.serebii.net/swordshield/pokemon/014.png',
-    'https://www.serebii.net/swordshield/pokemon/015.png',
-    'https://www.serebii.net/swordshield/pokemon/016.png',
-    'https://www.serebii.net/swordshield/pokemon/017.png',
-    'https://www.serebii.net/swordshield/pokemon/018.png',
-    'https://www.serebii.net/swordshield/pokemon/019.png',
-    'https://www.serebii.net/swordshield/pokemon/020.png',
-    'https://www.serebii.net/swordshield/pokemon/021.png',
-    'https://www.serebii.net/swordshield/pokemon/022.png',
-    'https://www.serebii.net/swordshield/pokemon/023.png',
-    'https://www.serebii.net/swordshield/pokemon/024.png',
-    'https://www.serebii.net/swordshield/pokemon/025.png',
-    'https://www.serebii.net/swordshield/pokemon/026.png',
-    'https://www.serebii.net/swordshield/pokemon/027.png',
-    'https://www.serebii.net/swordshield/pokemon/028.png',
-    'https://www.serebii.net/swordshield/pokemon/029.png',
-    'https://www.serebii.net/swordshield/pokemon/031.png',
-    'https://www.serebii.net/swordshield/pokemon/032.png',
-    'https://www.serebii.net/swordshield/pokemon/033.png',
-    'https://www.serebii.net/swordshield/pokemon/034.png',
-    'https://www.serebii.net/swordshield/pokemon/035.png',
-    'https://www.serebii.net/swordshield/pokemon/036.png',
-    'https://www.serebii.net/swordshield/pokemon/037.png',
-    'https://www.serebii.net/swordshield/pokemon/038.png',
-    'https://www.serebii.net/swordshield/pokemon/039.png',
-    'https://www.serebii.net/swordshield/pokemon/041.png',
-    'https://www.serebii.net/swordshield/pokemon/042.png',
-    'https://www.serebii.net/swordshield/pokemon/043.png',
-    'https://www.serebii.net/swordshield/pokemon/044.png',
-    'https://www.serebii.net/swordshield/pokemon/045.png',
-    'https://www.serebii.net/swordshield/pokemon/046.png',
-    'https://www.serebii.net/swordshield/pokemon/047.png',
-    'https://www.serebii.net/swordshield/pokemon/048.png',
-    'https://www.serebii.net/swordshield/pokemon/049.png',
-    'https://www.serebii.net/swordshield/pokemon/050.png',
-    'https://www.serebii.net/swordshield/pokemon/051.png',
-    'https://www.serebii.net/swordshield/pokemon/052.png',
-    'https://www.serebii.net/swordshield/pokemon/053.png',
-    'https://www.serebii.net/swordshield/pokemon/054.png',
-    'https://www.serebii.net/swordshield/pokemon/055.png',
-    'https://www.serebii.net/swordshield/pokemon/056.png',
-    'https://www.serebii.net/swordshield/pokemon/057.png',
-    'https://www.serebii.net/swordshield/pokemon/058.png',
-    'https://www.serebii.net/swordshield/pokemon/059.png',
+const images = [...Array(151).keys()].map((_, i) => `https://www.serebii.net/swordshield/pokemon/${String(i+1).padStart(3, '0')}.png`)
 
-  ];
 /* -------------------------------------------------------------------------------------------------------------------------------------------(comment)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
   const flyingImages = [
     
@@ -97,7 +40,7 @@ const images = [
 const nextImage = () => {
   if (usedImages.length === images.length) {
       clearInterval(checkDead);
-      // alert("You've already jumped all the Pokemon Great Job! Game over!");
+      alert("You've already jumped all the Pokemon Great Job! Game over!");
       return;
   }
   let nextImage;
@@ -146,14 +89,14 @@ function saveScore(name, score) {
           pokemon.style.animation = "none";
           gameOver = true;
           if (!nameEntered) {
-              // const playerName = prompt("Game over! Enter your name:");
+              const playerName = prompt("Game over! Enter your name:");
               nameEntered = true;
               saveScore(playerName, Math.floor(counter/100));
           } else {
               saveScore("no name entered", Math.floor(counter/100));
           }
           showScoreBoard();
-          // alert("Final score: " + Math.floor(counter/100) + "\n your score is saved!");
+          alert("Final score: " + Math.floor(counter/100) + "\n your score is saved!");
           counter = 0;
           pokemon.style.animation = "block 1.1s infinite linear";
       } else {
@@ -163,7 +106,7 @@ function saveScore(name, score) {
         clearInterval(checkDead);
         gameOver = true;
         if (!nameEntered) {
-              // const playerName = prompt("Game over! Enter your name:");
+              const playerName = prompt("Game over! Enter your name:");
               nameEntered = true;
               saveScore(playerName, Math.floor(counter/100));
           } else {
@@ -171,7 +114,7 @@ function saveScore(name, score) {
               saveScore("no name entered", Math.floor(counter/100));
           }
         showScoreBoard();
-        // alert("You've already jumped all the Pokemon Great Job! Final score: " + Math.floor(counter/100) + "\n your score is saved!");
+        alert("You've already jumped all the Pokemon Great Job! Final score: " + Math.floor(counter/100) + "\n your score is saved!");
         return;
       } 
   }, 10);
