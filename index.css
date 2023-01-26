@@ -7,15 +7,17 @@
 h1{
    background-image: url(images/Gotta-Jumpem-All.png);
    background-repeat: no-repeat;
+   background-position: center;
    width: 1200px;
    height: 300px;
    display: block;
    margin-left: auto;
    margin-right: auto;
-   
+text-align: center;   
 
-   
 }
+
+
 
 #scoreboard {
     background-color: #333; /* dark background */
@@ -32,7 +34,8 @@ h1{
     text-align: center;
     display: flex;
     justify-content: center;
-
+    text-align: center;
+    
 }
 
 #scoreboard .name {

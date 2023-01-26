@@ -9,12 +9,15 @@ let score = 0;
 let jumpedPokemon = 0;
 let nameEntered = false;
 const usedImages = [];
+
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Space bar click)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 document.body.onkeyup = function(e) {
   if( e.keyCode === 32 ) {
     jump();
   }
 }
+
+
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Images)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 const images = [...Array(151).keys()].map((_, i) => `https://www.serebii.net/swordshield/pokemon/${String(i+1).padStart(3, '0')}.png`)
 
@@ -30,12 +33,8 @@ const images = [...Array(151).keys()].map((_, i) => `https://www.serebii.net/swo
 
 
   ]
+  
 
-  document.body.onkeyup = function(e) {
-    if( e.keyCode === 32 ) {
-      jump();
-    }
-  }
 /* -------------------------------------------------------------------------------------------------------------------------------------------(comment)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 const nextImage = () => {
   if (usedImages.length === images.length) {
@@ -54,6 +53,7 @@ const nextImage = () => {
 const nextFlyingImage =() => flyingImages[Math.floor(Math.random() * flyingImages.length)]; 
 /* -------------------------------------------------------------------------------------------------------------------------------------------(jump)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 function jump() {
+
   if (character.classList.contains("animate"))  {
       return;     
   }    
@@ -80,8 +80,12 @@ function saveScore(name, score) {
   const scoreBoard = JSON.parse(localStorage.getItem("scoreBoard")) || [];
   scoreBoard.push({ name, score });
   localStorage.setItem("scoreBoard", JSON.stringify(scoreBoard));
+  
+  
 }
-  /* -------------------------------------------------------------------------------------------------------------------------------------------(check of Character is dead)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+  /* -------------------------------------------------------------------------------------------------------------------------------------------(check if Character is dead)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+  
+  
   var checkDead = setInterval(function() {
       let characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
       let blockLeft = parseInt(window.getComputedStyle(pokemon).getPropertyValue("left"));
@@ -101,6 +105,8 @@ function saveScore(name, score) {
           pokemon.style.animation = "block 1.1s infinite linear";
       } else {
           counter++;
+          document.getElementById("scoreSpan").innerHTML = Math.floor(counter/100);
+
       }
       if (usedImages.length === images.length) {
         clearInterval(checkDead);
