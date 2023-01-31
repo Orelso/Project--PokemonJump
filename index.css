@@ -38,6 +38,15 @@ text-align: center;
     
 }
 
+#scoreboard td:nth-child(even) {
+    background-color: #1852e3;  
+    color: red;
+  }
+  #scoreboard td:nth-child(odd) {
+    background-color: #1852e3;  
+    color: white;
+  }
+
 #scoreboard .name {
     align-self: flex-start;
     margin-top: 90%;
@@ -143,21 +152,7 @@ p{
     text-align: center;
 }
 
-#scoreboard {
-background-color: #ffdb49;  
-color: #1852e3;  
 
-
-}
-
-#scoreboard td:nth-child(even) {
-    background-color: black;  
-    color: red;
-  }
-  #scoreboard td:nth-child(odd) {
-    background-color: black;  
-    color: white;
-  }
 
 
   
