@@ -3,7 +3,6 @@ var pokemon = document.getElementById("pokemon");
 var flyingPokemon = document.getElementById("flyingPokemon")
 var counter = 0;
 var index = 0;
-const displayedPokemon = document.getElementById("displayed-pokemon");
 gameOver = false
 let score = 0;
 let jumpedPokemon = 0;
@@ -11,6 +10,7 @@ let nameEntered = false;
 const usedImages = [];
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Space bar click)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
 document.body.onkeyup = function(e) {
   if( e.keyCode === 32 ) {
     jump();
@@ -21,7 +21,7 @@ document.body.onkeyup = function(e) {
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Images)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 const images = [...Array(151).keys()].map((_, i) => `https://www.serebii.net/swordshield/pokemon/${String(i+1).padStart(3, '0')}.png`)
 
-/* -------------------------------------------------------------------------------------------------------------------------------------------(comment)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/* -------------------------------------------------------------------------------------------------------------------------------------------(Flying pokemon)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
   const flyingImages = [
     
     'https://www.serebii.net/swordshield/pokemon/146.png',
@@ -35,7 +35,7 @@ const images = [...Array(151).keys()].map((_, i) => `https://www.serebii.net/swo
   ]
   
 
-/* -------------------------------------------------------------------------------------------------------------------------------------------(comment)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/* -------------------------------------------------------------------------------------------------------------------------------------------(Next pokemon Image)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 const nextImage = () => {
   if (usedImages.length === images.length) {
       clearInterval(checkDead);
@@ -49,30 +49,29 @@ const nextImage = () => {
   usedImages.push(nextImage);
   return nextImage;
 }
-/* -------------------------------------------------------------------------------------------------------------------------------------------(comment)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/* -------------------------------------------------------------------------------------------------------------------------------------------(Next flying pokemon Image)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 const nextFlyingImage =() => flyingImages[Math.floor(Math.random() * flyingImages.length)]; 
 /* -------------------------------------------------------------------------------------------------------------------------------------------(jump)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 function jump() {
-
-  if (character.classList.contains("animate"))  {
-      return;     
-  }    
+  if (character.classList.contains("animate")) {
+    return;
+  }
   character.classList.add("animate");
   setTimeout(function() {
-      character.classList.remove("animate");
+    character.classList.remove("animate");
+    setTimeout(function() {
       const currentImage = nextImage();
       pokemon.style.content = `url(${currentImage})`;
       flyingPokemon.style.content = `url(${nextFlyingImage()})`;
-      displayedPokemon.src = currentImage;
-
-     const newImage = document.createElement("img");
+      const newImage = document.createElement("img");
       newImage.src = currentImage;
-      newImage.loading = 'lazy';
+      newImage.loading = "lazy";
       document.getElementById("image-container").appendChild(newImage);
-      
       jumpedPokemon++;
+    }, 1100);
   }, 1000);
 }
+
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------(SAVESCORE)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -87,6 +86,7 @@ function saveScore(name, score) {
   
   
   var checkDead = setInterval(function() {
+    showScoreBoard()
       let characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
       let blockLeft = parseInt(window.getComputedStyle(pokemon).getPropertyValue("left"));
       if(blockLeft < 60 && blockLeft > -60 && characterTop >= 260){
@@ -105,7 +105,7 @@ function saveScore(name, score) {
           pokemon.style.animation = "block 1.1s infinite linear";
       } else {
           counter++;
-          document.getElementById("scoreSpan").innerHTML = Math.floor(counter/100);
+                  document.getElementById("scoreSpan").innerHTML = Math.floor(counter/100);
 
       }
       if (usedImages.length === images.length) {
@@ -126,16 +126,13 @@ function saveScore(name, score) {
   }, 10);
 
   
-  /* -------------------------------------------------------------------------------------------------------------------------------------------()------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+  /* -------------------------------------------------------------------------------------------------------------------------------------------(Scoreboard)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 const table = document.createElement("table");
 table.classList.add("scoreboard");
-table.innerHTML = `
-    <tr>
-        <th>Name</th>
-        <th>Score</th>
-    </tr>
-`;
+// table.innerHTML = `
+//     <h2>Score Board</21>
+// `;
 document.getElementById("scoreboard").appendChild(table);
 
 function showScoreBoard() {
@@ -154,10 +151,10 @@ function showScoreBoard() {
   `;
   scoreBoard.forEach(function(player) {
       table.innerHTML += `
-          <tr>
-              <td>${player.name}</td>
-              <td>${player.score}</td>
-          </tr>
+      <tr>
+          <td>${player.name}</td>
+          <td>${player.score}</td>
+      </tr>
       `;
   });
 }

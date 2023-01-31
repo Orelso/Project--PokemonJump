@@ -121,7 +121,6 @@ text-align: center;
     animation: block 3s linear;
     animation-iteration-count: infinite;
     content: url("https://www.serebii.net/pokearth/sprites/pt/093.png");
-    /* content: url('https://www.serebii.net/swordshield/pokemon/146.png') */
 }
 
 
@@ -143,3 +142,22 @@ text-align: center;
 p{
     text-align: center;
 }
+
+#scoreboard {
+background-color: #ffdb49;  
+color: #1852e3;  
+
+
+}
+
+#scoreboard td:nth-child(even) {
+    background-color: black;  
+    color: red;
+  }
+  #scoreboard td:nth-child(odd) {
+    background-color: black;  
+    color: white;
+  }
+
+
+  
