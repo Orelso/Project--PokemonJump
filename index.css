@@ -20,8 +20,8 @@ text-align: center;
 
 
 #scoreboard {
-    background-color: #333; /* dark background */
-    color: #fff; /* white text */
+    background-color: rgb(247, 250, 33); /* dark background */
+    color: rgb(5, 91, 21); /* white text */
     padding: 20px; /* add padding */
     transition: all .2s ease-in-out;
     display: flex;
@@ -35,53 +35,39 @@ text-align: center;
     display: flex;
     justify-content: center;
     text-align: center;
+    border-radius: 25px;
+    font-size: 20px;
+    margin-top: -20%;
     
 }
 
 #scoreboard td:nth-child(even) {
-    background-color: #1852e3;  
-    color: red;
-  }
-  #scoreboard td:nth-child(odd) {
-    background-color: #1852e3;  
+    background-color: #1852e3; 
+    border-radius: 25px; 
     color: white;
   }
+  #scoreboard td:nth-child(odd) {
+    /* background-color: #1852e3;   */
+    color: blue;
+  }
+ 
 
-#scoreboard .name {
-    align-self: flex-start;
-    margin-top: 90%;
-}
 
-#scoreboard .score {
-    align-self: flex-start;
-}
 
-#scoreboard h2 {
-    font-size: 2em;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-#scoreboard p {
-    font-size: 1.2em;
-    line-height: 1.5;
-}
-#scoreboard table {
-    margin-top: 20px; /* add margin */
-}
+
+
 
 #scoreboard:hover {
     transform: scale(1.05); /* scale up on hover */
 }
 #scoreboard table td {
-    border-bottom: 1px solid silver;
-    padding: 0 10px; 
+    border-bottom: 1px solid blue;
+    padding: 10px 10px; 
 }
 #scoreboard table td:first-child {
-    border-right: 1px solid silver;
+    border-right: 1px solid blue;
 }
-#scoreboard td {
-    margin-bottom: 55px; /* Add 15px space below each td element */
-}
+
 
 
 .game{

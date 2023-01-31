@@ -145,8 +145,8 @@ function showScoreBoard() {
   // update the content of the table
   table.innerHTML = `
       <tr>
-          <th>Name</th>
-          <th>Score</th>
+          <th><u>Name</u></th>
+          <th><u>Score</u></th>
       </tr>
   `;
   scoreBoard.forEach(function(player) {
