@@ -3,7 +3,6 @@ var pokemon = document.getElementById("pokemon");
 var flyingPokemon = document.getElementById("flyingPokemon")
 var counter = 0;
 var index = 0;
-gameOver = false
 let score = 0;
 let jumpedPokemon = 0;
 let nameEntered = false;
@@ -99,7 +98,6 @@ function saveScore(name, score) {
       let blockLeft = parseInt(window.getComputedStyle(pokemon).getPropertyValue("left"));
       if(blockLeft < 60 && blockLeft > -60 && characterTop >= 260){
           pokemon.style.animation = "none";
-          gameOver = true;
           if (!nameEntered) {
               const playerName = prompt("Game over! Enter your name:");
               nameEntered = true;
@@ -115,7 +113,6 @@ function saveScore(name, score) {
       }
       if (usedImages.length === images.length) {
         clearInterval(checkDead);
-        gameOver = true;
         if (!nameEntered) {
               const playerName = prompt("Game over! Enter your name:");
               nameEntered = true;
