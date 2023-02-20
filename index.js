@@ -7,15 +7,25 @@ gameOver = false
 let score = 0;
 let jumpedPokemon = 0;
 let nameEntered = false;
-const usedImages = [];
+const usedImages = [    ];
+let paused = false;
+
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Space bar click)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 document.body.onkeyup = function(e) {
-  if( e.keyCode === 32 ) {
+  if (e.keyCode === 32) {
     jump();
+  } else if (e.keyCode === 49) { // check if number 1 is pressed
+    paused = !paused; // toggle pause state
+    if (paused) {
+      clearInterval(checkDead); // pause the game
+    } else {
+      checkDead = setInterval(gameLoop, 10); // resume the game
+    }
   }
 }
+
 
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Images)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -38,8 +48,6 @@ const images = [...Array(151).keys()].map((_, i) => `https://www.serebii.net/swo
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Next pokemon Image)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 const nextImage = () => {
   if (usedImages.length === images.length) {
-      clearInterval(checkDead);
-      alert("You've already jumped all the Pokemon Great Job! Game over!");
       return;
   }
   let nextImage;
