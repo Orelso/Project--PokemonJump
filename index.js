@@ -99,13 +99,10 @@ function saveScore(name, score) {
           } else {
               saveScore("no name entered", Math.floor(counter/100));
           }
-          showScoreBoard();
-          alert("Final score: " + Math.floor(counter/100) + "\n your score is saved!");
-          counter = 0;
-          pokemon.style.animation = "block 1.1s infinite linear";
+          window.location.reload();
       } else {
           counter++;
-                  document.getElementById("scoreSpan").innerHTML = Math.floor(counter/100);
+          document.getElementById("scoreSpan").innerHTML = Math.floor(counter/100);
 
       }
       if (usedImages.length === images.length) {
