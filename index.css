@@ -28,7 +28,7 @@ text-align: center;
     align-items: center;
     justify-content: space-between;
     width: 200px;
-    box-shadow: 8px 10px 10px rgba(0,0,0,0.3);
+    border: 1px solid black;
     margin-top: -15%;
     float: right;
     text-align: center;
@@ -49,6 +49,7 @@ text-align: center;
   #scoreboard td:nth-child(odd) {
     /* background-color: #1852e3;   */
     color: blue;
+    
   }
  
 
@@ -73,7 +74,7 @@ text-align: center;
 .game{
     width: 1000px;
     height: 400px;
-    border: 1px solid black;
+    border: 5px solid black;
     margin: auto;
     margin-top: 5px;
     background-image: url("https://p4.wallpaperbetter.com/wallpaper/957/704/964/pokemon-fields-ruby-1920x1200-nature-fields-hd-art-wallpaper-preview.jpg");

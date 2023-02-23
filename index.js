@@ -11,17 +11,11 @@ const usedImages = [];
 document.body.onkeyup = function(e) {
   if (e.keyCode === 32) {
     jump();
-  } else if (e.keyCode === 49) { // check if number 1 is pressed
-    paused = !paused; // toggle pause state
-    if (paused) {
-      clearInterval(checkDead); // pause the game
-    } else {
-      checkDead = setInterval(gameLoop, 10); // resume the game
-    }
-  }
+  } 
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Images)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 const images = [...Array(151).keys()].map((_, i) => `https://www.serebii.net/swordshield/pokemon/${String(i+1).padStart(3, '0')}.png`)
+const imagesLeft = [...images];
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Flying pokemon)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
   const flyingImages = [
     
@@ -34,6 +28,12 @@ const images = [...Array(151).keys()].map((_, i) => `https://www.serebii.net/swo
   ]
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Next pokemon Image)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 const nextImage = () => {
+  if(imagesLeft.length === 0 ) {
+    return;
+  }
+  const index = Math.floor(Math.random() * imagesLeft.length);
+  return imagesLeft.splice(index,1)[0];
+
   if (usedImages.length === images.length) {
       return;
   }
@@ -48,13 +48,22 @@ const nextImage = () => {
 const nextFlyingImage =() => flyingImages[Math.floor(Math.random() * flyingImages.length)]; 
 /* -------------------------------------------------------------------------------------------------------------------------------------------(jump)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 function jump() {
-  if (character.classList.contains("animate")) {
-    return;
-  }
+  console.log('jump')
+  // if (imagesLeft.length > 0) {
+  //   pokemon.style.content = `url(${nextImage()})`;
+  //   flyingPokemon.style.content = `url(${nextFlyingImage()})`;
+  //   const currentImage = nextImage();
+  //     pokemon.style.content = `url(${currentImage})`;
+  //     flyingPokemon.style.content = `url(${nextFlyingImage()})`;
+  //     const newImage = document.createElement("img");
+  //     newImage.src = currentImage;
+  //     newImage.loading = "lazy";
+  //     document.getElementById("image-container").appendChild(newImage);
+  // }
   character.classList.add("animate");
   setTimeout(function() {
     character.classList.remove("animate");
-    setTimeout(function() {
+    setTimeout(function() {      
       const currentImage = nextImage();
       pokemon.style.content = `url(${currentImage})`;
       flyingPokemon.style.content = `url(${nextFlyingImage()})`;
@@ -74,8 +83,6 @@ function saveScore(name, score) {
   localStorage.setItem("scoreBoard", JSON.stringify(scoreBoard));
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------(check if Character is dead)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-  
-  
   var checkDead = setInterval(function() {
     showScoreBoard()
       let characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
