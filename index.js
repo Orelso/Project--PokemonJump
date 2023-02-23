@@ -104,9 +104,8 @@ function saveScore(name, score) {
           } else {
               saveScore("no name entered", Math.floor(counter/100));
           }
-          console.log(window.location.reload())
           window.location.reload();
-          console.log(window.location.reload())
+          window.location.reload();
 
       } else {
           counter++;
