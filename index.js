@@ -83,11 +83,11 @@ function jump() {
 
 function saveScore(name, score) {
   const scoreBoard = JSON.parse(localStorage.getItem("scoreBoard")) || [];
-  scoreBoard.push({ name, score });
+  const player = { name, score };
+  scoreBoard.push(player);
   localStorage.setItem("scoreBoard", JSON.stringify(scoreBoard));
-  
-  
 }
+
   /* -------------------------------------------------------------------------------------------------------------------------------------------(check if Character is dead)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
   
   
