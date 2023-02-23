@@ -27,39 +27,29 @@ const imagesLeft = [...images];
     'https://www.serebii.net/xy/pokemon/092.png'
   ]
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Next pokemon Image)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-const nextImage = () => {
-  if(imagesLeft.length === 0 ) {
+function nextImage() {
+  if (imagesLeft.length === 0) {
     return;
   }
   const index = Math.floor(Math.random() * imagesLeft.length);
-  return imagesLeft.splice(index,1)[0];
+  return imagesLeft.splice(index, 1)[0];
 
   if (usedImages.length === images.length) {
-      return;
+    return;
   }
   let nextImage;
   do {
-      nextImage = images[Math.floor(Math.random() * images.length)];
+    nextImage = images[Math.floor(Math.random() * images.length)];
   } while (usedImages.includes(nextImage));
   usedImages.push(nextImage);
   return nextImage;
 }
+
+pokemon.style.content = `url(${nextImage()})`
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Next flying pokemon Image)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 const nextFlyingImage =() => flyingImages[Math.floor(Math.random() * flyingImages.length)]; 
 /* -------------------------------------------------------------------------------------------------------------------------------------------(jump)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 function jump() {
-  console.log('jump')
-  // if (imagesLeft.length > 0) {
-  //   pokemon.style.content = `url(${nextImage()})`;
-  //   flyingPokemon.style.content = `url(${nextFlyingImage()})`;
-  //   const currentImage = nextImage();
-  //     pokemon.style.content = `url(${currentImage})`;
-  //     flyingPokemon.style.content = `url(${nextFlyingImage()})`;
-  //     const newImage = document.createElement("img");
-  //     newImage.src = currentImage;
-  //     newImage.loading = "lazy";
-  //     document.getElementById("image-container").appendChild(newImage);
-  // }
   character.classList.add("animate");
   setTimeout(function() {
     character.classList.remove("animate");
@@ -67,6 +57,7 @@ function jump() {
       const currentImage = nextImage();
       pokemon.style.content = `url(${currentImage})`;
       flyingPokemon.style.content = `url(${nextFlyingImage()})`;
+      // adding to Page     
       const newImage = document.createElement("img");
       newImage.src = currentImage;
       newImage.loading = "lazy";

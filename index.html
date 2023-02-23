@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <title>Pokemon Jump</title>
     <link rel="stylesheet" href="index.css" />
-    <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
-
+    <script
+      type="text/javascript"
+      src="https://www.cornify.com/js/cornify.js"
+    ></script>
   </head>
   <body>
     <h1></h1>
@@ -20,22 +22,24 @@
     <span id="scoreboard"></span>
 
     <div id="image-container"></div>
-    
   </body>
   <script>
-    const pressed = []
-const secretCode = 'oo'
+    const pressed = [];
+    const secretCode = "pokemon";
 
-window.addEventListener('keyup', (e) => {
-    console.log(e.key)
-    pressed.push(e.key)
-    pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length)
-    if(pressed.join('').includes(secretCode)) {
-        console.log('DING DING')
-        cornify_add()
-    }
-    console.log(pressed);
-})
-</script>
+    window.addEventListener("keyup", (e) => {
+      console.log(e.key);
+      pressed.push(e.key);
+      pressed.splice(
+        -secretCode.length - 1,
+        pressed.length - secretCode.length
+      );
+      if (pressed.join("").includes(secretCode)) {
+        console.log("DING DING");
+        cornify_add();
+      }
+      console.log(pressed);
+    });
+  </script>
   <script src="index.js"></script>
 </html>
