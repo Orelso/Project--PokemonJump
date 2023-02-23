@@ -6,8 +6,7 @@ var index = 0;
 let score = 0;
 let jumpedPokemon = 0;
 let nameEntered = false;
-const usedImages = [    ];
-let paused = false;
+const usedImages = [];
 
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Space bar click)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -105,7 +104,10 @@ function saveScore(name, score) {
           } else {
               saveScore("no name entered", Math.floor(counter/100));
           }
+          console.log(window.location.reload())
           window.location.reload();
+          console.log(window.location.reload())
+
       } else {
           counter++;
           document.getElementById("scoreSpan").innerHTML = Math.floor(counter/100);
