@@ -5,7 +5,7 @@ const imageContainer = document.getElementById("image-container");
 
 var counter = 0;
 var index = 0;
-let score = 0;
+let score = -1;
 let jumpedPokemon = 0;
 let nameEntered = false;
 const usedImages = [];
@@ -38,7 +38,8 @@ function nextImage() {
 }
 
 
-// pokemon.style.content = `url(${nextImage()})`
+pokemon.style.content = `url(${nextImage()})`
+jumpedPokemon--
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Next flying pokemon Image)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 const nextFlyingImage =() => flyingImages[Math.floor(Math.random() * flyingImages.length)]; 
 /* -------------------------------------------------------------------------------------------------------------------------------------------(jump)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -60,8 +61,8 @@ function jump() {
       newImage.loading = "lazy";
       document.getElementById("image-container").appendChild(newImage);
       jumpedPokemon++;
-    }, 1100);
-  }, 1000);
+    }, 0);
+  }, 500);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------(SAVESCORE)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 function saveScore(name, score) {
@@ -77,16 +78,15 @@ function saveScore(name, score) {
       let blockLeft = parseInt(window.getComputedStyle(pokemon).getPropertyValue("left"));
       if(blockLeft < 60 && blockLeft > -60 && characterTop >= 260){
           pokemon.style.animation = "none";
-          if (!nameEntered) {
-              const playerName = prompt("Game over! Enter your name:");
+          while (!nameEntered) {
+            const playerName = prompt("Game over! Enter your name:");
+          
+            if (playerName !== null && playerName.trim() !== "") {
               nameEntered = true;
               saveScore(playerName, Math.floor(counter/100));
-          } else {
-              saveScore("no name entered", Math.floor(counter/100));
+            }
           }
           window.location.reload();
-          window.location.reload();
-
       } else {
           counter++;
           document.getElementById("scoreSpan").innerHTML = Math.floor(counter/100);
@@ -110,9 +110,6 @@ function saveScore(name, score) {
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Scoreboard)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 const table = document.createElement("table");
 table.classList.add("scoreboard");
-// table.innerHTML = `
-//     <h2>Score Board</21>
-// `;
 document.getElementById("scoreboard").appendChild(table);
 
 function showScoreBoard() {
@@ -138,5 +135,12 @@ function showScoreBoard() {
       `;
   });
 }
+
+
+const clearScoresButton = document.getElementById("clearScoresButton");
+clearScoresButton.addEventListener("click", function() {
+  localStorage.removeItem("scoreBoard");
+  showScoreBoard();
+});
 
 
