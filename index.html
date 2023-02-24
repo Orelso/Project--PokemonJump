@@ -18,13 +18,11 @@
         <div id="flyingPokemon"></div>
       </div>
       <p>Score: <span id="scoreSpan"></span></p>
+      <button id="clearScoresButton">Clear Scoreboard</button>
+
     </div>
+
     <span id="scoreboard"></span>
-    <div>
-      <h2>Scoreboard</h2>
-      <table></table>
-      <button id="clearScoresButton">Clear Scores</button>
-    </div>
 
     <div id="image-container"></div>
   </body>
@@ -40,10 +38,8 @@
         pressed.length - secretCode.length
       );
       if (pressed.join("").includes(secretCode)) {
-        console.log("DING DING");
         cornify_add();
       }
-      console.log(pressed);
     });
   </script>
   <script src="index.js"></script>

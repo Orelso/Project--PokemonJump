@@ -79,7 +79,7 @@ function saveScore(name, score) {
       if(blockLeft < 60 && blockLeft > -60 && characterTop >= 260){
           pokemon.style.animation = "none";
           while (!nameEntered) {
-            const playerName = prompt("Game over! Enter your name:");
+            // const playerName = prompt("Game over! Enter your name:");
           
             if (playerName !== null && playerName.trim() !== "") {
               nameEntered = true;
