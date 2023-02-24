@@ -1,6 +1,8 @@
 var character = document.getElementById("character");
 var pokemon = document.getElementById("pokemon");
 var flyingPokemon = document.getElementById("flyingPokemon")
+const imageContainer = document.getElementById("image-container");
+
 var counter = 0;
 var index = 0;
 let score = 0;
@@ -18,7 +20,6 @@ const images = [...Array(151).keys()].map((_, i) => `https://www.serebii.net/swo
 const imagesLeft = [...images];
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Flying pokemon)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
   const flyingImages = [
-    
     'https://www.serebii.net/swordshield/pokemon/146.png',
     'https://www.serebii.net/pokearth/sprites/pt/093.png',
     'https://www.serebii.net/xy/pokemon/144.png',
@@ -27,29 +28,25 @@ const imagesLeft = [...images];
     'https://www.serebii.net/xy/pokemon/092.png'
   ]
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Next pokemon Image)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
 function nextImage() {
   if (imagesLeft.length === 0) {
-    return;
+    imagesLeft = [...images]; // reset the imagesLeft array if all images have been used
   }
   const index = Math.floor(Math.random() * imagesLeft.length);
   return imagesLeft.splice(index, 1)[0];
-
-  if (usedImages.length === images.length) {
-    return;
-  }
-  let nextImage;
-  do {
-    nextImage = images[Math.floor(Math.random() * images.length)];
-  } while (usedImages.includes(nextImage));
-  usedImages.push(nextImage);
-  return nextImage;
 }
 
-pokemon.style.content = `url(${nextImage()})`
+
+// pokemon.style.content = `url(${nextImage()})`
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Next flying pokemon Image)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 const nextFlyingImage =() => flyingImages[Math.floor(Math.random() * flyingImages.length)]; 
 /* -------------------------------------------------------------------------------------------------------------------------------------------(jump)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 function jump() {
+  if (jumpedPokemon === 0) {
+    // set the initial image on the first jump
+    pokemon.style.content = `url(${nextImage()})`;
+  }
   character.classList.add("animate");
   setTimeout(function() {
     character.classList.remove("animate");
