@@ -16,6 +16,20 @@ h1 {
   text-align: center;
 }
 
+h2{
+    width: 250px;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    background-color: black;
+    color:  white;
+
+}
+
+i{
+    color: yellow;
+}
+
 #scoreboard {
   background-color: rgb(247, 250, 33); /* dark background */
   color: rgb(5, 91, 21); /* white text */
