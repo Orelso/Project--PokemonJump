@@ -120,14 +120,11 @@ text-align: center;
 }
 
 
-.small-image {
-    width: 50px;
-    height: 50px;
-  }
+
 
   img {
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
   }
 
 @keyframes block{
@@ -139,14 +136,28 @@ p{
     text-align: center;
 }
 
-#clearScoresButton {
-align-items: center;
-float: center;
-}
-
-
-.scoreboarddiv {
-    align-items: center;
-}
+.center-button {
+    display: block;
+    margin: 0 auto;
+    width: 150px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .center-button:hover {
+    background-color: #ffa500;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+  }
+  
+  
 
   

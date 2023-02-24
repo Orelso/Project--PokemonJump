@@ -37,30 +37,40 @@ function nextImage() {
   return imagesLeft.splice(index, 1)[0];
 }
 
-
-pokemon.style.content = `url(${nextImage()})`
-jumpedPokemon--
+let lastImage = nextImage();
+pokemon.style.content = `url(${lastImage})`;
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Next flying pokemon Image)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 const nextFlyingImage =() => flyingImages[Math.floor(Math.random() * flyingImages.length)]; 
 /* -------------------------------------------------------------------------------------------------------------------------------------------(jump)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-function jump() {
-  if (jumpedPokemon === 0) {
-    // set the initial image on the first jump
-    pokemon.style.content = `url(${nextImage()})`;
-  }
-  character.classList.add("animate");
-  setTimeout(function() {
-    character.classList.remove("animate");
-    setTimeout(function() {      
-      const currentImage = nextImage();
-      pokemon.style.content = `url(${currentImage})`;
-      flyingPokemon.style.content = `url(${nextFlyingImage()})`;
+function changePokemon(currentImage) {
+  pokemon.style.content = `url(${currentImage})`;
+  lastImage = currentImage;
+}
+
+function addToLine(currentImage) {
       // adding to Page     
       const newImage = document.createElement("img");
       newImage.src = currentImage;
       newImage.loading = "lazy";
       document.getElementById("image-container").appendChild(newImage);
-      jumpedPokemon++;
+}
+
+function jumpWasOk() {
+  addToLine(lastImage);
+  changePokemon(nextImage());
+  
+  flyingPokemon.style.content = `url(${nextFlyingImage()})`;
+ 
+  jumpedPokemon++;
+}
+
+
+function jump() {
+  character.classList.add("animate");
+  setTimeout(function() {
+    character.classList.remove("animate");
+    setTimeout(function() {
+      jumpWasOk();
     }, 0);
   }, 500);
 }
@@ -79,8 +89,7 @@ function saveScore(name, score) {
       if(blockLeft < 60 && blockLeft > -60 && characterTop >= 260){
           pokemon.style.animation = "none";
           while (!nameEntered) {
-            // const playerName = prompt("Game over! Enter your name:");
-          
+            const playerName = prompt("Game over! Enter your name:");
             if (playerName !== null && playerName.trim() !== "") {
               nameEntered = true;
               saveScore(playerName, Math.floor(counter/100));
