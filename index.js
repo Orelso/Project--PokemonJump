@@ -5,7 +5,7 @@ const imageContainer = document.getElementById("image-container");
 
 var counter = 0;
 var index = 0;
-let score = -1;
+let score = 0;
 let jumpedPokemon = 0;
 let nameEntered = false;
 const usedImages = [];
@@ -58,9 +58,7 @@ function addToLine(currentImage) {
 function jumpWasOk() {
   addToLine(lastImage);
   changePokemon(nextImage());
-  
   flyingPokemon.style.content = `url(${nextFlyingImage()})`;
- 
   jumpedPokemon++;
 }
 
@@ -89,7 +87,7 @@ function saveScore(name, score) {
       if(blockLeft < 60 && blockLeft > -60 && characterTop >= 260){
           pokemon.style.animation = "none";
           while (!nameEntered) {
-            const playerName = prompt("Game over! Enter your name:");
+            // const playerName = prompt("Game over! Enter your name:");
             if (playerName !== null && playerName.trim() !== "") {
               nameEntered = true;
               saveScore(playerName, Math.floor(counter/100));
