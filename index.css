@@ -32,7 +32,7 @@ text-align: center;
     margin-top: -15%;
     float: right;
     text-align: center;
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     text-align: center;
     border-radius: 25px;
@@ -139,7 +139,14 @@ p{
     text-align: center;
 }
 
+#clearScoresButton {
+align-items: center;
+float: center;
+}
 
 
+.scoreboarddiv {
+    align-items: center;
+}
 
   
