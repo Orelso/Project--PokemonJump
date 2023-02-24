@@ -15,6 +15,17 @@ document.body.onkeyup = function(e) {
     jump();
   } 
 }
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'p') {
+    var audio = document.getElementById('pokemon-audio');
+    if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  }
+});
+
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Images)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 const images = [...Array(151).keys()].map((_, i) => `https://www.serebii.net/swordshield/pokemon/${String(i+1).padStart(3, '0')}.png`)
 const imagesLeft = [...images];
@@ -87,7 +98,7 @@ function saveScore(name, score) {
       if(blockLeft < 60 && blockLeft > -60 && characterTop >= 260){
           pokemon.style.animation = "none";
           while (!nameEntered) {
-            // const playerName = prompt("Game over! Enter your name:");
+            const playerName = prompt("Game over! Enter your name:");
             if (playerName !== null && playerName.trim() !== "") {
               nameEntered = true;
               saveScore(playerName, Math.floor(counter/100));
