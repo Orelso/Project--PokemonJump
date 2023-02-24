@@ -83,6 +83,7 @@ function jump() {
     }, 0);
   }, 500);
 }
+
 /* -------------------------------------------------------------------------------------------------------------------------------------------(SAVESCORE)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 function saveScore(name, score) {
   const scoreBoard = JSON.parse(localStorage.getItem("scoreBoard")) || [];
@@ -91,7 +92,14 @@ function saveScore(name, score) {
   localStorage.setItem("scoreBoard", JSON.stringify(scoreBoard));
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------(check if Character is dead)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-  var checkDead = setInterval(function() {
+const pauseButton = document.getElementById("pauseButton");
+let isPaused = false;
+pauseButton.addEventListener("click", function() {
+  if (isPaused) {
+    clearInterval(checkDead);
+    isPaused = true;
+  } else {
+var checkDead = setInterval(function() {
     showScoreBoard()
       let characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
       let blockLeft = parseInt(window.getComputedStyle(pokemon).getPropertyValue("left"));
@@ -125,6 +133,9 @@ function saveScore(name, score) {
         return;
       } 
   }, 10);
+  isPaused = false;
+}
+});
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Scoreboard)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 const table = document.createElement("table");
 table.classList.add("scoreboard");
